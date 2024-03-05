@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   output: {
     filename: './assets/script.min.js',
-    path: path.join(__dirname, './publick')
+    path: path.join(__dirname, './public')
   },
   resolve: {
     extensions: ['.js', '.jsx', '.scss'],
@@ -21,12 +21,12 @@ module.exports = {
       //   loader: 'html-loader'
       // },
       {
-        test: /\.jsx?$/,
+        test: /\.jsx?/,
         loader: 'esbuild-loader',
         options: {
           target: 'es2015'
         }
-      },      
+      },
       {
         test: /\.s[ac]ss$/,
         use: [
