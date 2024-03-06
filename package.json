@@ -12,6 +12,7 @@
   "workspaces": [
     "packages/react-app",
     "packages/vue-app",
-    "packages/svelte-app"
+    "packages/svelte-app",
+    "packages/react-app-gnb"
   ]
 }

@@ -38,15 +38,16 @@ module.exports = {
   },
   devServer: {
     host: 'localhost',
-    port: 8080
+    port: 8081
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './index.html' }),
     new MiniCssExtractPlugin({ filename: './assets/style.min.js'}),
     new ModuleFederationPlugin({
-      name: 'reactApp',
-      remotes: {
-        reactAppGnb: 'reactAppGnb@http://localhost:8081/remoteEntry.js',
+      name: 'reactAppGnb',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './App': './src/App.jsx',
       }
     })
   ]
