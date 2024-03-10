@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently -n \"MAIN,LIST,FORM\" -c \"cyan,magenta,yellow\" -f \"npm run main\" \"npm run list\" \"npm run form\"",
+    "test": "concurrently -n \"react\" -c \"magenta\" -f \"npm run ttt\"",
     "api": "npm run server.js",
+    "ttt": "npm run dev -w ./packages/main-react",
     "main": "npm run dev -w ./packages/main-react",
     "list": "npm run dev -w ./packages/list-react",
     "form": "npm run dev -w ./packages/form-vue"

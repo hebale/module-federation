@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --mode=development"
   },
   "repository": {
     "type": "git",
@@ -17,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/hebale/module-federation/issues"
   },
-  "homepage": "https://github.com/hebale/module-federation#readme"
+  "homepage": "https://github.com/hebale/module-federation#readme",
+  "dependencies": {
+    "vue": "^3.4.21",
+    "vue-loader": "^17.4.2"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^2.8.1",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.2"
+  }
 }
