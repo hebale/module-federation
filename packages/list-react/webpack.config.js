@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
+const { dependencies } = require('./package.json');
 
 module.exports = {
   entry: './src/index.jsx',
@@ -12,7 +13,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.scss'],
     alias: {
-      '@': path.join(__dirname, './src')
+      '@': path.join(__dirname, './src'),
+      '@Components': path.join(__dirname, '../main-react/src/components')
     }
   },
   module: {
@@ -48,6 +50,9 @@ module.exports = {
       filename: 'remoteEntry.js',
       exposes: {
         './App': './src/App.jsx',
+      },
+      shared: {
+        ...dependencies
       }
     })
   ]

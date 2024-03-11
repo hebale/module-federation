@@ -1,8 +1,16 @@
 import React from 'react';
 
+import Loading from '@Components/Loading';
+
+
+
 const App = () => {
+  console.log(<Loading />);
   return (
-    <p>this is main-react app</p>
+    <>
+      <Loading />
+      <p>this is list-react app</p>
+    </>
   )
 };
 

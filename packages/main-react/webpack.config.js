@@ -28,7 +28,10 @@ module.exports = {
         test: /\.s[ac]ss$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader  
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../../'
+            }
           },
           'css-loader',
           'sass-loader'
@@ -38,11 +41,12 @@ module.exports = {
   },
   devServer: {
     host: 'localhost',
-    port: 8081
+    port: 8081,
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './index.html' }),
-    new MiniCssExtractPlugin({ filename: './assets/style.min.js'}),
+    new MiniCssExtractPlugin({ filename: './assets/style.min.css'}),
     new ModuleFederationPlugin({
       name: 'mainApp',
       remotes: {

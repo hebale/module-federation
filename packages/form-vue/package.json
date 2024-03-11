@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/hebale/module-federation#readme",
   "dependencies": {
-    "vue": "^3.4.21",
-    "vue-loader": "^17.4.2"
+    "vue-loader": "^17.4.2",
+    "vuetify": "^3.5.8"
   },
   "devDependencies": {
     "html-webpack-plugin": "^5.6.0",
