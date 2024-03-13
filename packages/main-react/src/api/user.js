@@ -1,6 +1,13 @@
-import Http from '@/utils/http';
+import Http from "@/utils/http";
 
-export const signUp = ({ email, password, name }) => Http.post({
-  path: '/api/signup',
-  body: { email, password, name }
-})
+export const signUp = ({ name, email, password }) =>
+  Http.post({
+    path: "/api/signup",
+    body: { name, email, password },
+  });
+
+export const signIn = ({ email, password }) =>
+  Http.post({
+    path: "/api/sigin",
+    body: { email, password },
+  });

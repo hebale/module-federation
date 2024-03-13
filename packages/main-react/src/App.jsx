@@ -1,42 +1,42 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Loading from '@/components/Loading';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Loading from "@/components/Loading";
 
-import Login from '@/pages/Login';
-import Sign from '@/pages/Sign';
-import Main from '@/pages/Main';
+import Login from "@/pages/Login";
+import Sign from "@/pages/Sign";
+import Main from "@/pages/Main";
 
 const routeMap = [
   {
-    id: 'main',
-    path: '/',
+    id: "main",
+    path: "/",
     element: <Main />,
-    description: '메인페이지'
+    description: "메인페이지",
   },
   {
-    id: 'login',
-    path: '/login',
+    id: "login",
+    path: "/login",
     element: <Login />,
-    description: 'JWT 로그인'
+    description: "JWT 로그인",
   },
   {
-    id: 'sign',
-    path: '/sign',
+    id: "sign",
+    path: "/sign",
     element: <Sign />,
-    description: '가입'
-  }  
+    description: "가입",
+  },
 ];
 
 const App = () => {
   return (
     <React.Suspense fallback={<Loading />}>
       <Routes>
-        {routeMap.map(route => (
+        {routeMap.map((route) => (
           <Route key={route.id} path={route.path} element={route.element} />
         ))}
       </Routes>
     </React.Suspense>
-  )
+  );
 };
 
 export default App;

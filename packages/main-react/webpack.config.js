@@ -1,32 +1,32 @@
-const webpack = require('webpack');
-const path = require('path');
-const dotenv = require('dotenv');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { ModuleFederationPlugin } = require('webpack').container;
+const webpack = require("webpack");
+const path = require("path");
+const dotenv = require("dotenv");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
 
-dotenv.config({ path: path.join(__dirname, '../..', '.env') });
+dotenv.config({ path: path.join(__dirname, "../..", ".env") });
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: "./src/index.jsx",
   output: {
-    filename: './assets/script.min.js',
-    path: path.join(__dirname, './public')
+    filename: "./assets/script.min.js",
+    path: path.join(__dirname, "./public"),
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.scss'],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".scss"],
     alias: {
-      '@': path.join(__dirname, './src')
-    }
+      "@": path.join(__dirname, "./src"),
+    },
   },
   module: {
     rules: [
       {
-        test: /\.jsx?/,
-        loader: 'esbuild-loader',
+        test: /\.[jt]sx?/,
+        loader: "esbuild-loader",
         options: {
-          target: 'es2015'
-        }
+          target: "es2015",
+        },
       },
       {
         test: /\.s[ac]ss$/,
@@ -34,32 +34,32 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: '../../'
-            }
+              publicPath: "../../",
+            },
           },
-          'css-loader',
-          'sass-loader'
-        ]
-      }
-    ]
+          "css-loader",
+          "sass-loader",
+        ],
+      },
+    ],
   },
   devServer: {
-    host: 'localhost',
+    host: "localhost",
     port: 8081,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify(process.env)
+      "process.env": JSON.stringify(process.env),
     }),
-    new HtmlWebpackPlugin({ template: './index.html' }),
-    new MiniCssExtractPlugin({ filename: './assets/style.min.css'}),
+    new HtmlWebpackPlugin({ template: "./index.html" }),
+    new MiniCssExtractPlugin({ filename: "./assets/style.min.css" }),
     new ModuleFederationPlugin({
-      name: 'mainApp',
+      name: "mainApp",
       remotes: {
-        listApp: 'listApp@http://localhost:8082/remoteEntry.js',
-        formApp: 'formApp@http://localhost:8083/remoteEntry.js'
-      }
-    })
-  ]
-}
+        listApp: "listApp@http://localhost:8082/remoteEntry.js",
+        formApp: "formApp@http://localhost:8083/remoteEntry.js",
+      },
+    }),
+  ],
+};

@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { AlertDispatchContext } from "@/provider/AlertContext";
 
 const useAlert = () => {
-  const { on, off } = useContext(AlertDispatchContext);
-  const onAlert = props => on({ id: new Date().getTime(), ...props });
-  const offAlert = id => off(id);
+  const { open, close } = useContext(AlertDispatchContext);
+  const openAlert = (props) => open({ id: new Date().getTime(), ...props });
+  const closeAlert = (id) => close(id);
 
-  return { onAlert, offAlert }
+  return { openAlert, closeAlert };
 };
 
 export default useAlert;

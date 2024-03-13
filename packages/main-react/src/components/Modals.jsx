@@ -1,14 +1,10 @@
 import React, { createElement, useContext } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { Box, Stack, Modal, Typography, Button, Link } from "@mui/material";
 import {
-  Box,
-  Stack,
-  Modal,
-  Typography,
-  Button,
-  Link
-} from '@mui/material';
-import { ModalStateContext, ModalDispatchContext } from "@/provider/ModalContext";
+  ModalStateContext,
+  ModalDispatchContext,
+} from "@/provider/ModalContext";
 
 const Modals = () => {
   const modals = useContext(ModalStateContext);
@@ -17,22 +13,22 @@ const Modals = () => {
   return modals.map((modal) => {
     return (
       <Modal open={true} key={modal.id}>
-         <Box
+        <Box
           sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
+            position: "absolute",
+            top: "50%",
+            left: "50%",
             width: 240,
             padding: 4,
-            tranform: 'translate(-50%, -50%)',
-            background: '#f5f5f5',
+            tranform: "translate(-50%, -50%)",
+            background: "#f5f5f5",
             boxShadow: 6,
-            textAlign: 'center'
+            textAlign: "center",
           }}
         >
           <Button onClick={() => close(modal.id)}>닫기</Button>
           {modal?.body}
-          
+
           {/* <Typography
             variant='h3'
             component='h2'
