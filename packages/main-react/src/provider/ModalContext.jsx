@@ -13,8 +13,8 @@ const ModalProvider = ({ children }) => {
     open: (props) => {
       setActiveModals((modals) => [...modals, props]);
     },
-    close: (key) => {
-      setActiveModals((modals) => modals.filter((modal) => modal.key !== key));
+    close: (id) => {
+      setActiveModals((modals) => modals.filter((modal) => modal.id !== id));
     },
   };
 

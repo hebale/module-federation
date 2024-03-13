@@ -1,17 +1,14 @@
 import React, { useContext } from "react";
-import { ModalDispatchContext } from "@/contexts/modalContext";
+import { ModalDispatchContext } from "@/provider/ModalContext";
 
 const useModal = () => {
   const { open, close } = useContext(ModalDispatchContext);
   const openModal = (props) => {
     open({ id: new Date().getTime(), ...props });
   };
+  const closeModal = (id) => close(id);
 
-  // const closeModal =  => {
-  //   close
-  // };
-
-  return { openModal };
+  return { openModal, closeModal };
 };
 
 export default useModal;

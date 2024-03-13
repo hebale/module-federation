@@ -1,7 +1,11 @@
+const webpack = require('webpack');
 const path = require('path');
+const dotenv = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
+
+dotenv.config({ path: path.join(__dirname, '../..', '.env') });
 
 module.exports = {
   entry: './src/index.jsx',
@@ -45,6 +49,9 @@ module.exports = {
     historyApiFallback: true
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env)
+    }),
     new HtmlWebpackPlugin({ template: './index.html' }),
     new MiniCssExtractPlugin({ filename: './assets/style.min.css'}),
     new ModuleFederationPlugin({

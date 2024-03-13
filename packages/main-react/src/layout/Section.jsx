@@ -29,13 +29,16 @@ const routeMap = [
 
 const Section = () => {
   return (
-    <Suspense fallback={<>로딩중</>}>      
-      <Routes>
-        {routeMap.map(route => (
-          <Route key={route.title} path={route.path} element={route.element} />
-        ))}
-      </Routes>
-    </Suspense>
+    <>
+      Section
+    </>
+    // <Suspense fallback={<>로딩중</>}>      
+    //   <Routes>
+    //     {routeMap.map(route => (
+    //       <Route key={route.title} path={route.path} element={route.element} />
+    //     ))}
+    //   </Routes>
+    // </Suspense>
   )
 };
 
