@@ -10,6 +10,14 @@ import Alert from "~/components/Alert";
 import AlertProvider from "~/provider/AlertContext";
 import "~/assets/style";
 
+// console.log(process.env);
+
+if (true) {
+  const { worker } = require("../../../msw/mocks/browser");
+
+  worker.start();
+}
+
 createRoot(document.querySelector("#app")).render(
   <BrowserRouter>
     <AlertProvider>

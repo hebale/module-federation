@@ -60,7 +60,7 @@ const Sign = () => {
         throw "비밀번호를 확인해 주세요.";
       }
 
-      // signUp(formData);
+      signUp(formData);
     } catch (message) {
       openAlert({ type: "error", text: message, timer: 2000 });
     }

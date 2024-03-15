@@ -14,7 +14,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 import { isEmailFormat, isPwFormat } from "~/utils/validation";
 import useAlert from "~/service/useAlert";
-import { signIn } from "~/api/user";
+import { login } from "~/api/user";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -52,7 +52,7 @@ const Login = () => {
         throw "비밀번호를 확인해 주세요.";
       }
 
-      // signIn(formData);
+      login(formData);
     } catch (message) {
       openAlert({ type: "error", text: message, timer: 2000 });
     }

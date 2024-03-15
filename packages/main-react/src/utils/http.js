@@ -5,6 +5,7 @@ class Http {
     this.host = `${process.env.API_HOST}`;
     this.headers = {
       "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
     };
   }
 
@@ -44,10 +45,23 @@ class Http {
         body: JSON.stringify(body),
       });
 
-      return response.json();
+      const data = await (() => {
+        if (
+          !this.headers ||
+          this.headers["Content-Type"].indexOf("json") > -1
+        ) {
+          return response.json();
+        }
+        return response;
+      })();
+
+      return data;
     } catch (err) {
       let message = "Unknown Error!";
       if (err instanceof Error) message = err.message;
+
+      console.log(err);
+
       alert(message);
     }
   };

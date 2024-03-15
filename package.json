@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently -n \"MAIN,LIST,FORM\" -c \"cyan,magenta,yellow\" -k \"npm run main\" \"npm run list\" \"npm run form\"",
-    "test": "concurrently -n \"react\" -c \"magenta\" -f \"npm run ttt\"",
+    "dev": "concurrently -n \"MAIN,LIST,FORM\" -c \"cyan,magenta,yellow\" -k \"npm run main\" \"npm run list\" \"npm run form\" --mode=development",
     "api": "npm run server.js",
-    "ttt": "npm run dev -w ./packages/main-react",
     "main": "npm run dev -w ./packages/main-react",
     "list": "npm run dev -w ./packages/list-react",
-    "form": "npm run dev -w ./packages/form-vue"
+    "form": "npm run dev -w ./packages/form-vue",
+    "db": "json-server ./msw/db.json --port 4000"
   },
   "repository": {
     "type": "git",
@@ -29,6 +28,15 @@
     "packages/form-vue"
   ],
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "msw": "^2.2.3"
+  },
+  "msw": {
+    "workerDirectory": [
+      "msw"
+    ]
+  },
+  "dependencies": {
+    "json-server": "^1.0.0-alpha.23"
   }
 }

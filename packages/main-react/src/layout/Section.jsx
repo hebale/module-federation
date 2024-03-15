@@ -1,7 +1,8 @@
-import React, { Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Loading from "~/components/Loading";
+import { Stack, Button } from "@mui/material";
 
 const ListReact = React.lazy(() => import("listApp/App"));
 
@@ -27,8 +28,34 @@ const routeMap = [
 ];
 
 const Section = () => {
+  const [data, setData] = useState({});
+
+  const mswFetching = async () => {
+    const response = await fetch("/user", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+
+    setData(data);
+  };
+
+  console.log(data);
+
   return (
-    <>Section</>
+    <>
+      <Button variant="contained" sx={{ height: "60px" }} onClick={mswFetching}>
+        MSW TEST
+      </Button>
+
+      <div>
+        <p>{data.name ?? "아무개"}</p>
+        <p>{data.gender ?? "성별"}</p>
+      </div>
+    </>
     // <Suspense fallback={<>로딩중</>}>
     //   <Routes>
     //     {routeMap.map(route => (

@@ -6,8 +6,8 @@ export const signUp = ({ name, email, password }) =>
     body: { name, email, password },
   });
 
-export const signIn = ({ email, password }) =>
+export const login = ({ email, password }) =>
   Http.post({
-    path: "/api/sigin",
+    path: "/api/login",
     body: { email, password },
   });
