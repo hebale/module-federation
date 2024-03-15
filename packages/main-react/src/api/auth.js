@@ -1,4 +1,3 @@
-import Http from '@/utils/http';
+import Http from "~/utils/http";
 
-export const loginAuth = () => Http.get({ path: '/user' });
-
+export const loginAuth = () => Http.get({ path: "/user" });

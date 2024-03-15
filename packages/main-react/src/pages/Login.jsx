@@ -12,9 +12,9 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-import { isEmailFormat, isPwFormat } from "@/utils/validation";
-import useAlert from "@/service/useAlert";
-import { signIn } from "@/api/user";
+import { isEmailFormat, isPwFormat } from "~/utils/validation";
+import useAlert from "~/service/useAlert";
+import { signIn } from "~/api/user";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Grid,
@@ -6,18 +6,18 @@ import {
   Stack,
   Modal,
   Typography,
-  Link
-} from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+  Link,
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-import Gnb from '@/layout/Gnb';
-import Header from '@/layout/Header';
-import Section from '@/layout/Section';
+import Gnb from "~/layout/Gnb";
+import Header from "~/layout/Header";
+import Section from "~/layout/Section";
 
-import useModal from '@/service/useModal';
+import useModal from "~/service/useModal";
 
-import Http from '@/utils/http';
-import { loginAuth } from '@/api/auth';
+import Http from "~/utils/http";
+import { loginAuth } from "~/api/auth";
 
 const Main = () => {
   const [count, setCount] = useState(5);
@@ -25,20 +25,15 @@ const Main = () => {
 
   const navigate = useNavigate();
   const { openModal, closeModal } = useModal();
-    
+
   useEffect(() => {
-
-
     // console.log(
-    //   localStorage.getItem('accessToken') 
+    //   localStorage.getItem('accessToken')
 
     // )
     // if(loginAuth({})){
 
     // }
-
-
-
 
     // openModal({
     //   id: 'loginInfo',
@@ -116,21 +111,21 @@ const Main = () => {
         component="main"
         disableGutters={true}
         maxWidth={false}
-        sx={{ height: '100vh' }}
-        >
+        sx={{ height: "100vh" }}
+      >
         <Header />
         <Grid
           component="section"
           container={true}
           direction="row"
-          sx={{ height: '100%' }}
-          >
+          sx={{ height: "100%" }}
+        >
           <Gnb />
           <Section />
         </Grid>
       </Container>
     </>
-  )  
-}
+  );
+};
 
 export default Main;

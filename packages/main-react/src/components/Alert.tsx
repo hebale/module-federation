@@ -5,7 +5,7 @@ import { TransitionGroup } from "react-transition-group";
 import {
   AlertStateContext,
   AlertDispatchContext,
-} from "@/provider/AlertContext";
+} from "~/provider/AlertContext";
 
 const Modals = () => {
   const alerts = useContext(AlertStateContext);

@@ -4,7 +4,7 @@ import { Box, Stack, Modal, Typography, Button, Link } from "@mui/material";
 import {
   ModalStateContext,
   ModalDispatchContext,
-} from "@/provider/ModalContext";
+} from "~/provider/ModalContext";
 
 const Modals = () => {
   const modals = useContext(ModalStateContext);

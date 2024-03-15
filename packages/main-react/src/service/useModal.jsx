@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ModalDispatchContext } from "@/provider/ModalContext";
+import { ModalDispatchContext } from "~/provider/ModalContext";
 
 const useModal = () => {
   const { open, close } = useContext(ModalDispatchContext);

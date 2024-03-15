@@ -1,4 +1,4 @@
-import Http from "@/utils/http";
+import Http from "~/utils/http";
 
 export const signUp = ({ name, email, password }) =>
   Http.post({

@@ -1,5 +1,6 @@
 import React, { useState, createContext } from "react";
-import Alert from "@/components/Alert";
+import type { ReactNode } from "react";
+import type { AlertStateType, AlertDispetchType } from "~/types/components";
 
 export const AlertStateContext = createContext([]);
 export const AlertDispatchContext = createContext({
@@ -7,12 +8,12 @@ export const AlertDispatchContext = createContext({
   close: () => {},
 });
 
-const AlertProvider = ({ children }) => {
-  const [alerts, setAlerts] = useState([]);
+const AlertProvider = ({ children }: { children: ReactNode }) => {
+  const [alerts, setAlerts] = useState<AlertStateType[]>([]);
 
-  const dispatch = {
-    open: (props) => {
-      setAlerts((alerts) => [...alerts, props]);
+  const dispatch: AlertDispetchType = {
+    open: (alert) => {
+      setAlerts((alerts) => [...alerts, alert]);
     },
     close: (id) => {
       setAlerts((alerts) => alerts.filter((alert) => alert.id !== id));
@@ -22,7 +23,6 @@ const AlertProvider = ({ children }) => {
   return (
     <AlertDispatchContext.Provider value={dispatch}>
       <AlertStateContext.Provider value={alerts}>
-        <Alert />
         {children}
       </AlertStateContext.Provider>
     </AlertDispatchContext.Provider>

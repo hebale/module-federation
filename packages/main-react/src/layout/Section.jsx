@@ -1,22 +1,22 @@
-import React, { Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
 
-import Loading from '@/components/Loading';
+import Loading from "~/components/Loading";
 
-const ListReact = React.lazy(() => import('listApp/App'));
+const ListReact = React.lazy(() => import("listApp/App"));
 
 const routeMap = [
   {
-    title: 'Main',
-    path: '/',
+    title: "Main",
+    path: "/",
     element: <Loading />,
-    description: 'Main React'
+    description: "Main React",
   },
   {
-    title: 'List',
-    path: '/list',
+    title: "List",
+    path: "/list",
     element: <ListReact />,
-    description: 'List React'
+    description: "List React",
   },
   // {
   //   title: 'Form',
@@ -24,22 +24,19 @@ const routeMap = [
   //   element: <FormVue />,
   //   description: 'Form Vue'
   // }
-]
-
+];
 
 const Section = () => {
   return (
-    <>
-      Section
-    </>
-    // <Suspense fallback={<>로딩중</>}>      
+    <>Section</>
+    // <Suspense fallback={<>로딩중</>}>
     //   <Routes>
     //     {routeMap.map(route => (
     //       <Route key={route.title} path={route.path} element={route.element} />
     //     ))}
     //   </Routes>
     // </Suspense>
-  )
+  );
 };
 
 export default Section;

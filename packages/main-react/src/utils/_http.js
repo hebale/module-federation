@@ -1,60 +1,78 @@
-const http = () => {
-  const host = `${process.env.API_HOST}`
+const request = (baseUrl) => async (url, options) => {
+  const response = await fetch(url, options);
 
-  const header = {
-    
+  if (!response.ok) {
+    const body = await response.json().catch(() => ({}));
+    const responseWithBody = { ...response, body };
+    throw new RequestError(responseWithBody);
   }
 
-  const queryString = (params) => {
-    return Object.keys(params)
-      .map((value) => `${value}=${params[value]}`)
-      .join('&')
-  };
+  const body = await response.json().catch(() => ({}));
+  const responseWithBody = { ...response, body };
+  return responseWithBody;
+};
 
-  return {
-    get: async ({ base, path, queries, headers }) => {
-      try {
-        const response = await fetch(
-          `${base ? base : host}${path}${queries ? `&${queryString(queries)}` : ''}`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              ...(headers && headers)
-            }
-          }
-        )
-        const data = await (() => {
-          if (!headers || headers['Content-Type'].indexOf('json') > -1) {
-            return response.json();
-          }
-          return response;
-        })();
+const interceptedRequest = interceptor.onRequest(url, options);
+const response = await fetch(
+  interceptedRequest.url,
+  interceptedRequest.options
+);
 
-        return data;
-      } catch (error) {
+if (!response.ok) {
+  const body = await response.json().catch(() => ({}));
+  const responseWithBody = { ...response, body };
+  throw new RequestError(interceptor.onError(responseWithBody));
+}
 
-        console.log(error);
-        
-        let message = 'Unknown Error!';
-        if (error instanceof Error) message = error.message;
-        handleError(message);
+const body = await response.json().catch(() => ({}));
+const responseWithBody = { ...response, body };
+return interceptor.onSuccess(responseWithBody);
+
+export const interceptor = {
+  configs: null,
+  onRequest: (url, options, configs) => ({ url, options }),
+  onSuccess: (response) => {},
+  onError: (response) => {},
+  set({ configs, onRequest, onSuccess, onError }) {
+    if (configs) this.configs = configs;
+    if (onRequest) this.onRequest = onRequest;
+    if (onSuccess) this.onSuccess = onSuccess;
+    if (onError) this.onError = onError;
+  },
+};
+
+const useInterceptor = ({ configs, onRequest, onSuccess, onError }) => {
+  useEffect(() => {
+    interceptor.set({ configs, onRequest, onSuccess, onError });
+  }, [configs, onRequest, onSuccess, onError]);
+};
+
+const App = () => {
+  const userContext = useUserContext;
+
+  useInterceptor({
+    configs: {
+      baseUrl: "http://localhost:8080",
+      accessToken: userContext.accessToken,
+    },
+    onRequest: (url, options, configs) => ({
+      url: `${configs.baseUrl}${url}`,
+      options: {
+        ...options,
+        headers: {
+          ...options.headers,
+          Authorization: `Bearer ${configs.accessToken}`,
+        },
+      },
+    }),
+    onError: (response) => {
+      if (response.status === 401) {
+        userContext.logout();
       }
     },
-    post: async ({ path, body }) => {},
-    pull: async ({ path, body }) => {},
-    patch: async ({ path, body }) => {},
-    delete: async ({ path, body }) => {}
-  }
-}
+  });
 
-export default http();
+  // ...
+};
 
-
-
-class Http() {
-  constructor(){
-    this.host = ''
-    this.header = ''
-  }
-}
+// get:

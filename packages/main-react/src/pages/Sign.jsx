@@ -14,9 +14,9 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-import { isEmailFormat, isPwFormat } from "@/utils/validation";
-import useAlert from "@/service/useAlert";
-import { signUp } from "@/api/user";
+import { isEmailFormat, isPwFormat } from "~/utils/validation";
+import useAlert from "~/service/useAlert";
+import { signUp } from "~/api/user";
 
 const Sign = () => {
   const [showPassword, setShowPassword] = useState(false);
